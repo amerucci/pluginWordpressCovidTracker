@@ -48,6 +48,14 @@ class Data extends Database
         var_dump($dept);
     }
 
+    public function regionList(){
+        $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "REG-%"');
+        $departement->execute();
+        $dept = $departement->fetchAll(); //On lui demande de nous retourner dans la variable $int le résultat de notre requête sous forme de tableau.
+        return $dept;
+        var_dump($dept);
+    }
+
     public function search(){
         $req = array();
         $value = array();
@@ -62,10 +70,45 @@ class Data extends Database
             array_push($value, $_GET['search']);
         }
 
+        if(!empty($_GET['region'])){
+            array_push($req, 'AND code LIKE "%"?"%"');
+            array_push($value, $_GET['region']);
+        }
+
+        if(!empty($_GET['hospitalisation'])){
+            array_push($req, 'AND hospitalises > ? AND code NOT LIKE "FRA"');
+            array_push($value, $_GET['hospitalisation']);
+        }
+
+        if(!empty($_GET['reanimation'])){
+            array_push($req, 'AND reanimation > ? AND code NOT LIKE "FRA"');
+            array_push($value, $_GET['reanimation']);
+        }
+
+        if(!empty($_GET['newhospitalisation'])){
+            array_push($req, 'AND nouvellesHospitalisations > ? AND code NOT LIKE "FRA"');
+            array_push($value, $_GET['newhospitalisation']);
+        }
+
+        if(!empty($_GET['newreanimation'])){
+            array_push($req, 'AND nouvellesReanimations > ? AND code NOT LIKE "FRA" ');
+            array_push($value, $_GET['newreanimation']);
+        }
+
+        if(!empty($_GET['gueris'])){
+            array_push($req, 'AND gueris > ? AND code NOT LIKE "FRA"');
+            array_push($value, $_GET['gueris']);
+        }
+
+        if(!empty($_GET['mort'])){
+            array_push($req, 'AND deces > ? AND code NOT LIKE "FRA"');
+            array_push($value, $_GET['mort']);
+        }
+
         $request = implode(" ", $req);
         $search = $this->connect()->prepare('SELECT * FROM coviddatas WHERE 1=1 '.$request.'');
         $search->execute($value);
-        //$search->debugDumpParams();
+        $search->debugDumpParams();
         $resultSearch = $search->fetchAll();
         return $resultSearch;
     
