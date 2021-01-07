@@ -108,7 +108,7 @@ class Data extends Database
         $request = implode(" ", $req);
         $search = $this->connect()->prepare('SELECT * FROM coviddatas WHERE 1=1 '.$request.'');
         $search->execute($value);
-        $search->debugDumpParams();
+        //$search->debugDumpParams();
         $resultSearch = $search->fetchAll();
         return $resultSearch;
     
