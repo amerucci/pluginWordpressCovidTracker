@@ -40,8 +40,39 @@ class Data extends Database
     }
 
 
+    public function getList($whichList){
+
+        switch ($whichList) {
+            case 'region':
+                $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "REG-%"');
+                break;
+
+                case 'departement':
+                    $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "DEP-%"');
+                    break;
+            
+            default:
+            $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "DEP-%"');
+                break;
+        }
+
+        
+        $departement->execute();
+        $dept = $departement->fetchAll(); //On lui demande de nous retourner dans la variable $int le résultat de notre requête sous forme de tableau.
+        return $dept;
+        var_dump($dept);
+    }
+
     public function departmentList(){
         $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "DEP-%"');
+        $departement->execute();
+        $dept = $departement->fetchAll(); //On lui demande de nous retourner dans la variable $int le résultat de notre requête sous forme de tableau.
+        return $dept;
+        var_dump($dept);
+    }
+
+    public function regionSelectList(){
+        $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "REG-%"');
         $departement->execute();
         $dept = $departement->fetchAll(); //On lui demande de nous retourner dans la variable $int le résultat de notre requête sous forme de tableau.
         return $dept;
@@ -57,15 +88,34 @@ class Data extends Database
         //var_dump($dept);
     }
 
+  
+
     public function regionList(){
-        $departement = $this->connect()->prepare('SELECT code, nom FROM coviddatas WHERE code LIKE "REG-%"');
+        $departement = $this->connect()->prepare('SELECT * FROM coviddatas WHERE code LIKE "REG-%"');
         $departement->execute();
         $dept = $departement->fetchAll(); //On lui demande de nous retourner dans la variable $int le résultat de notre requête sous forme de tableau.
         return $dept;
         var_dump($dept);
     }
 
-    public function search(){
+    public function search($what){
+
+        $whatIsSearch = $what;
+
+        switch ($whatIsSearch) {
+            case 'Région':
+                $specReq = 'AND code LIKE "REG-%"';
+                break;
+
+            case 'Département':
+                $specReq = 'AND code LIKE "DEP-%"';
+                break;
+            
+            default:
+                $specReq = 'AND code LIKE "DEP-%"';
+                break;
+        }
+
         $req = array();
         $value = array();
 
@@ -115,9 +165,9 @@ class Data extends Database
         }
 
         $request = implode(" ", $req);
-        $search = $this->connect()->prepare('SELECT * FROM coviddatas WHERE 1=1 '.$request.'');
+        $search = $this->connect()->prepare('SELECT * FROM coviddatas WHERE 1=1  '.$request.' '.$specReq.'');
         $search->execute($value);
-        //$search->debugDumpParams();
+        $search->debugDumpParams();
         $resultSearch = $search->fetchAll();
         return $resultSearch;
     

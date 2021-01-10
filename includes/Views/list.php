@@ -1,10 +1,10 @@
 <?php ob_start();?>
 
-
+ 
     <table>
             <thead class="thead-dark ">
                 <tr>
-                    <th scope="col">Département</th>
+                    <th scope="col"><?php echo $whattosearch;?></th>
                     <th scope="col">Personnes hospitalisés</th>
                     <th scope="col">Personnes en réanimation</th>
                     <th scope="col">Nouvelles hospitalisations</th>

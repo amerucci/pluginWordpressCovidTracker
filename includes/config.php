@@ -1,4 +1,9 @@
 <?php
+
+require_once  __DIR__ . '/Models/Data.php'; 
+require_once  __DIR__ . '/Controllers/covidController.php'; 
+
+
 //A l'installation du plugin on va faire en sorte qu'une table soit créé dans notre base de données si elle n'existe pas
 global $wpdb;
 $servername = $wpdb->dbhost;
@@ -13,15 +18,18 @@ if ( !$sh->execute() ) {
     code VARCHAR(30) NOT NULL,
     nom VARCHAR(30) NOT NULL,
     date VARCHAR(50),
-    hospitalises VARCHAR(30),
-    reanimation VARCHAR(30),
-    nouvellesHospitalisations VARCHAR(30),
-    nouvellesReanimations VARCHAR(30),
-    deces VARCHAR(30),
-    gueris VARCHAR(30)
+    hospitalises int(30),
+    reanimation int(30),
+    nouvellesHospitalisations int(30),
+    nouvellesReanimations int(30),
+    deces int(30),
+    gueris int(30)
  )";
     $conn->exec($sql);
     $conn = null;
+
+
+
 } 
  //Ajout de lien de notre plugin dans le menu latéral
 add_action( 'admin_menu', 'pluginLink' );
@@ -39,14 +47,46 @@ function pluginLink()
 //Maintenant génération de l'intérieur de la page admin quand le slug est appelé
 function covid_tracker_admin_page(){
 require_once("admin/covid-tracker-admin.php");
-
 }
 
-//Creation d'une page vituelle
-add_filter( 'init', function( $template ) {
-    if ( isset( $_GET['invoice_id'] ) ) {
-        $invoice_id = $_GET['invoice_id'];
-        include plugin_dir_path( __FILE__ ) . 'user/view.php';
-        die;
-    }
-} );
+
+
+
+/* Shortcode for displaying a particular department */
+function shortcode_chosenDepartment($atts){
+   $s = isset($atts['s']) ? $atts['s'] : '';
+   $view =  getDepartment($s);
+   return $view;
+}
+add_shortcode('department', 'shortcode_chosenDepartment');
+
+/* Shortcode for displaying all departments */
+function shortcode_allDepartment(){
+   $view =  getAllDepartment();
+   return $view;
+}
+add_shortcode('departments', 'shortcode_allDepartment');
+
+/* Shortcode for displaying all regions */
+function shortcode_allRegion(){
+   $view =  getAllRegions();
+   return $view;
+}
+add_shortcode('regions', 'shortcode_allRegion');
+
+
+/* Shortcode for displaying all department width filter */
+function shortcode_displayWithSearchBar($atts){
+   $s = isset($atts['s']) ? $atts['s'] : '';
+   $view = form($s);
+   $view .=  getAllWithFilters($s);
+   return $view;
+}
+add_shortcode('displayWidthSearchBar', 'shortcode_displayWithSearchBar');
+
+
+
+
+
+
+

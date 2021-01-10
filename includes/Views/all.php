@@ -30,7 +30,7 @@ else{
 
 
 
-   <?php $html=  '<div class="sticky">
+    <div class="sticky">
 
         <!-- Formulaire de recherche -->
 
@@ -38,15 +38,9 @@ else{
             <div class="form-row align-items-center">
                 <div class="col-12 my-1 theform">
                    
-                    <input type="text" name="search" class="form-control mb-3" placeholder="Rechercher">
+                    <input type="text" name='search' class="form-control mb-3" placeholder="Rechercher">
                     <select class="custom-select mr-sm-2 mb-3" id="inlineFormCustomSelect" name="departement">
-                        <option selected value="">Département...</option>';
-
-
-return $html;
-die;
-
-                        ?>
+                        <option selected value="">Département...</option>
                         <?php
                         $departementList = new Data();
                         $dept = $departementList->departmentList();
