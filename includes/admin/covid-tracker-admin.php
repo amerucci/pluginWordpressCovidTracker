@@ -13,6 +13,7 @@ require_once  __DIR__ . '/../Models/Data.php';
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
                 <label>Cliquez sur le bouton suivant pour mettre les informations à jour</label>
+                <input type="hidden" name="page" value="covid_tracker_admin">
                 
             </div>
 
