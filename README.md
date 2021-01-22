@@ -1,10 +1,10 @@
-#PROJET 10 - Création d'un plugin Wordpress
+# PROJET 10 - Création d'un plugin Wordpress
 
 Dans ce projet il vous sera demandé de créer un plugin wordpress, intégrant dans une base de données les données issues d'une API.
 Vous devrez par la suite générer des shortcodes vous permettant d'appeler vos données dans les pages de votre choix.
 Il faudra aussi généer un shortcode permettant à l'utilisateur d'afficher une liste et d'afficher des moteurs de recherche pour trier celle-ci
 
-##Récapitulatif des shortcodes : 
+## Récapitulatif des shortcodes : 
 
 [department] : Pour afficher un département choisi
 [region] : Pour afficher un région choisie
@@ -12,7 +12,7 @@ Il faudra aussi généer un shortcode permettant à l'utilisateur d'afficher une
 [regions] : Pour afficher toutes les régions
 [displayWidthSearchBar] : Pour afficher soit tous les départements, soit toutes les régions en fonction du choix de l'utilisateur, le tout avec un moteur de recherche.
 
-##Récapitulatif du projet : 
+## Récapitulatif du projet : 
 
 Création d'un plugin qui lors de l'activation créra une nouvelle table dans la base de données. Attention il ne faudra en aucun cas devoir re-saisir les identifiants, mdp et autres informations de celle-ci. Il faudra les récupérer automatiquement afin que votre plugin puisse être réutilisable sur un autre site automatiquement.
 
@@ -36,18 +36,18 @@ https://coronavirusapi-france.now.sh/AllLiveData
 
 Votre plugin devra aussi pemettre à l'utilisateur de selectionner le shortcode qu'il souhaite utiliser, qu'il pourra par la suite copier et coller dans la page de son choix.
 
-##Moteur de recherche à afficher en front :
+## Moteur de recherche à afficher en front :
 
 Les moteurs de recherche devront se constituer ainsi : 
-    - Un champ de recherche libre
-    - Un select donnant la possibilité de choisir une région (La liste devra être généré automatiquement) (1)
+- Un champ de recherche libre
+- Un select donnant la possibilité de choisir une région (La liste devra être généré automatiquement) (1)
     Des options supplémentaires : 
-    - Un champ de type nombre pour trier le nombre de personnes hospitalises
-    - Un champ de type nombre pour trier le nombre de personnes en réaanimation
-    - Un champ de type nombre pour trier le nombre de nouvelles hospitalisations
-    - Un champ de type nombre pour trier le nombre de personnes personnes en réanimation
-    - Un champ de type nombre pour trier le nombre de personnes décédés
-    - Un champ de type nombre pour trier le nombre de personnes guéries
+- Un champ de type nombre pour trier le nombre de personnes hospitalises
+- Un champ de type nombre pour trier le nombre de personnes en réaanimation
+- Un champ de type nombre pour trier le nombre de nouvelles hospitalisations
+- Un champ de type nombre pour trier le nombre de personnes personnes en réanimation
+- Un champ de type nombre pour trier le nombre de personnes décédés
+- Un champ de type nombre pour trier le nombre de personnes guéries
 
 (1) Attention si la personne a décidé de choisir d'afficher les départements avec un moteur de recherche, le select devra afficher la liste des départements et s’il a choisi les régions, le select devra afficher la liste des régions.
 
