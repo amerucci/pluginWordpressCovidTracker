@@ -16,7 +16,7 @@ Il faudra aussi généer un shortcode permettant à l'utilisateur d'afficher une
 
 Création d'un plugin qui lors de l'activation créra une nouvelle table dans la base de données. Attention il ne faudra en aucun cas devoir re-saisir les identifiants, mdp et autres informations de celle-ci. Il faudra les récupérer automatiquement afin que votre plugin puisse être réutilisable sur un autre site automatiquement.
 
-##Structure de la base de données : 
+## Structure de la base de données : 
 
     id Primaire int(6)
     code    varchar(30) 
@@ -51,11 +51,11 @@ Les moteurs de recherche devront se constituer ainsi :
 
 (1) Attention si la personne a décidé de choisir d'afficher les départements avec un moteur de recherche, le select devra afficher la liste des départements et s’il a choisi les régions, le select devra afficher la liste des régions.
 
-Développement en option : 
+## Développement en option : 
 
 La liste généré suite une recherche via le moteur de recherche peut etre traité en Ajax afin d'éviter un rechargement de la page.
 
-Livrable attendu : 
+## Livrable attendu : 
 
 Votre code devra être versionné sur GitHub
 Votre plugin devra être en visible sur un site en ligne.
@@ -64,7 +64,7 @@ Le travail se fera de manière individuelle. Vous n'êtes pas obligé de dévelo
 
 Le développement des fonctionnalités de votre plugin pourra être développées de manière procédurale ou en MVC.
 
-Ressources pour vous aider dans votre développement : 
+## Ressources pour vous aider dans votre développement : 
 
 Création d'un plugin : 
 
@@ -81,7 +81,7 @@ Traiter les données d'une API en PHP
 - https://www.php.net/manual/fr/book.curl.php
 - https://www.youtube.com/watch?v=vq7yJDuf42E
 
-Date du projet : 
+## Date du projet : 
 
 Du 11/01/2021 au 15/01/2021
 
